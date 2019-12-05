@@ -85,6 +85,22 @@ const data = [
     thirdParagraph: `Hodor hodor - hodor... Hodor hodor hodor hodor. Hodor. Hodor! Hodor hodor, hodor hodor hodor hodor hodor; hodor hodor? Hodor!
           Hodor hodor, HODOR hodor, hodor hodor?! Hodor! Hodor hodor, HODOR hodor, hodor hodor, hodor, hodor hodor. Hodor, hodor.
           Hodor. Hodor, hodor, hodor. Hodor hodor... Hodor hodor hodor?! Hodor, hodor... Hodor hodor HODOR hodor, hodor hodor. Hodor.`
+  },
+  {
+    title: 'Lambda Lambda Lambda',
+    date: 'Jan 15th, 2019',
+    firstParagraph: `Hodor hodor HODOR! Hodor hodor - hodor, hodor. Hodor hodor... Hodor hodor hodor; hodor hodor. Hodor hodor hodor, hodor, hodor
+          hodor. Hodor, hodor. Hodor. Hodor, hodor - hodor... Hodor hodor hodor; hodor HODOR hodor, hodor hodor?! Hodor hodor, hodor.
+          Hodor hodor hodor hodor hodor! Hodor hodor - HODOR hodor, hodor hodor hodor hodor hodor; hodor hodor? `,
+
+    secondParagraph: `Hodor, hodor. Hodor. Hodor, hodor, hodor. Hodor hodor, hodor. Hodor hodor, hodor, hodor hodor. Hodor! Hodor hodor, hodor;
+          hodor hodor hodor? Hodor, hodor. Hodor. Hodor, hodor - HODOR hodor, hodor hodor hodor! Hodor, hodor. Hodor. Hodor, HODOR
+          hodor, hodor hodor, hodor, hodor hodor. Hodor hodor - hodor - hodor... Hodor hodor hodor hodor hodor hodor hodor?! Hodor
+          hodor - hodor hodor hodor. Hodor. Hodor hodor... Hodor hodor hodor hodor hodor? `,
+
+    thirdParagraph: `Hodor hodor - hodor... Hodor hodor hodor hodor. Hodor. Hodor! Hodor hodor, hodor hodor hodor hodor hodor; hodor hodor? Hodor!
+          Hodor hodor, HODOR hodor, hodor hodor?! Hodor! Hodor hodor, HODOR hodor, hodor hodor, hodor, hodor hodor. Hodor, hodor.
+          Hodor. Hodor, hodor, hodor. Hodor hodor... Hodor hodor hodor?! Hodor, hodor... Hodor hodor HODOR hodor, hodor hodor. Hodor.`
   }
 ];
 
@@ -101,7 +117,7 @@ const data = [
 
   Hint: You will need to use createElement more than once here!
 
-  Your function should take either an object as it's one argument, or 5 separate arguments mapping to each piece of the data object above.
+  Your function should take either an object as it's one argument, or 5 separate arguments mapping to each piece of the data object above. 
 
   Step 2: Add an event listener to the expandButton span. This event listener should toggle the class 'article-open' on the 'article' div.
 
@@ -112,3 +128,52 @@ const data = [
   Step 5: Add a new article to the array. Make sure it is in the same format as the others. Refresh the page to see the new article.
 
 */
+
+function createArticles(obj) {
+  const article = document.createElement('div');
+  const h2 = document.createElement('h2');
+  const date = document.createElement('p');
+  const p = document.createElement('p');
+  const p2 = document.createElement('p');
+  const p3 = document.createElement('P');
+  const expandButton = document.createElement('span');
+
+  article.classList.add('article');
+  date.classList.add('date');
+  expandButton.classList.add('expandButton');
+  // buttonClose.classList.add('close');
+
+
+  articles.appendChild(article);
+  article.appendChild(h2);
+  article.appendChild(date);
+  article.appendChild(expandButton);
+  article.appendChild(p);
+  article.appendChild(p2);
+  article.appendChild(p3);
+
+  h2.textContent = obj.title;
+  date.textContent = obj.date;
+  p.textContent = obj.firstParagraph;
+  p2.textContent = obj.secondParagraph;
+  p3.textContent = obj.thirdParagraph;
+  expandButton.textContent = '\u25bc';
+
+  expandButton.addEventListener('click', event => {
+
+    article.classList.toggle('article-open');
+
+    if (article.classList.contains('article-open'))
+    { expandButton.textContent = '\u25b2';}
+    else
+    { expandButton.textContent = '\u25BC';}
+
+  })
+  return article;
+}
+
+const articles = document.querySelector('.articles');
+
+data.forEach(fill => {
+  articles.appendChild(createArticles(fill))
+});
