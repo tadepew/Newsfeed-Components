@@ -163,6 +163,11 @@ function createArticles(obj) {
 
     article.classList.toggle('article-open');
 
+    if (article.classList.contains('article-open'))
+    { expandButton.textContent = '\u25b2';}
+    else
+    { expandButton.textContent = '\u25BC';}
+
   })
   return article;
 }

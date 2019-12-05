@@ -56,5 +56,5 @@ function createMenu(array) {
   return menu; 
 }
 
-const header = document.querySelector('.header');
-  header.appendChild(createMenu(menuItems));
+//add menu to DOM
+document.querySelector('.header').appendChild(createMenu(menuItems));
